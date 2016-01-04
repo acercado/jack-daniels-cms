@@ -1,0 +1,37 @@
+{% load staticfiles %}
+{% include 'cms/header.html' %}
+  <body class="hold-transition skin-black sidebar-mini">
+    <div class="wrapper">
+		{% include 'cms/navbar.html' %}
+		{% include 'cms/sidebar.html' %}
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>{% if request.path in PATH_ACCOUNTS or request.path|slice:":19" == '/cms/accounts/edit/' %}
+            Accounts
+          {% elif request.path in PATH_REWARDS or request.path|slice:":36" == '/cms/perksnprizes/loyaltycodes/edit/' %}
+            Perks & Prizes
+          {% elif request.path|slice:":5" == '/news' %}
+            News
+          {% elif request.path|slice:":9" == '/policies' %}
+            Policies
+          {% elif request.path|slice:":9" == '/featured' %}
+            Featured
+          {% elif request.path in PATH_CONTESTS %}
+            Contest
+          {% elif request.path in PATH_FEATURED %}
+            Featured
+          {% elif request.path|slice:":19" == '/cms/whiskey-family' %}
+            Whiskey Family
+          {% endif %}</h1>
+          <!-- <h2>{{request.path}}</h2> -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+        {% block content %}{% endblock %}
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+{% include 'cms/navfoot.html' %}
+{% include 'cms/footer.html' %}
